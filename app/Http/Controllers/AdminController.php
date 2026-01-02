@@ -48,11 +48,11 @@ class AdminController extends Controller
         }
     }
 
-    function categories(){
-         $admin = Session::get('admin');
+ function categories(){
+        $categories= Category::get();
+        $admin = Session::get('admin');
         if($admin){
-         return view('categories',["name"=>$admin->name]);
-
+            return view('categories',["name"=>$admin->name,"categories"=>$categories]);
         }else{
             return redirect('admin-login');
         }
