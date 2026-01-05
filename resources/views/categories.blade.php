@@ -20,14 +20,17 @@
                     <label for="" class="text-gray-600 mb-1">Add Category<label>
                      <input type="text" placeholder="Enter category Name" name="category"
                      class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none">    
-            </div>
+            @error('category')
+            <div class="text-red-500">{{$message}}</div>
+            @enderror
+                    </div>
                 <button type="submit" class="w-full bg-blue-500 px-4 py-2 rounded-xl text-white">Add</button>
             </form>
         </div>
         <div class="w-200">
             <h1 class="text-2xl text-blue-500">Category List</h1>
             <ul class="border border-gray-200">
-                <li>
+                <li class="p-2">
                     <ul class="flex justify-between">
                        <li class="w-30"> S. No</li>
                        <li class="w-70"> Name</li>
@@ -36,12 +39,17 @@
                     </ul>
                 </li>
                @foreach($categories as $category)
-               <li class="even:bg-gray-200">
+               <li class="even:bg-gray-200 p-2 ">
                     <ul class="flex justify-between">
-                       <li?> {{$category->id}}</li>
-                       <li?> {{$category->name}}</li>
-                       <li?> {{$category->creator}}</li>
-                       <li?> delete</li>
+                       <li class="w-30"> {{$category->id}}</li>
+                       <li class="w-70"> {{$category->name}}</li>
+                       <li class="w-70"> {{$category->creator}}</li>
+                       <li class="w-30"> 
+                        <a href="/category/delete/{{$category->id}}">
+              <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#1f1f1f"><path d="M312-144q-29.7 0-50.85-21.15Q240-186.3 240-216v-480h-48v-72h192v-48h192v48h192v72h-48v479.57Q720-186 698.85-165T648-144H312Zm336-552H312v480h336v-480ZM384-288h72v-336h-72v336Zm120 0h72v-336h-72v336ZM312-696v480-480Z"/></svg>
+
+                        </a>
+                       </li>
                     </ul>
                 </li>
                @endforeach
